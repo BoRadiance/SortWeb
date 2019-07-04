@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用户注册</title>
+  <link href="/App/static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+ <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="http://127.0.0.1:5000/api/v1.0/index">欢迎使用基于MVC经典排序算法web演示系统</a>
+
+    </div>
+    <div class="pull-right">
+        <ul class="nav navbar-nav">
+            <a class="navbar-brand " href="http://127.0.0.1:5000/api/v1.0/login">登录</a>
+            <a class="navbar-brand " href="http://127.0.0.1:5000/api/v1.0/register">注册</a>
+            <a class="navbar-brand " href="http://127.0.0.1:5000/api/v1.0/admin">个人管理中心</a>
+        </ul>
+    </div>
+    </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span class="panel-title">注册基本信息</span>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" method="post" >
+             {{ form.csrf_token }}
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">{{ form.username.label}}</label>
+            <div class="col-sm-4">
+             {{ form.username(class="form-control",placeholder='输入用户名') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">{{ form.password.label }}</label>
+            <div class="col-sm-4">
+             {{ form.password(class="form-control",placeholder='密码') }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">{{form.confirm.label}}</label>
+            <div class="col-sm-4">
+             {{ form.confirm(class="form-control",placeholder='确认密码') }}
+            </div>
+          </div>
+           {{ form.submit(class="btn btn-success pull-right") }}
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<script src="/App/static/js/jquery-3.2.1.min.js"></script>
+<script src="/App/static/js/bootstrap.min.js"></script>
+</body>
+</html>

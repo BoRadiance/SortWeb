@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>个人中心</title>
+  <link href="/App/static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="http://127.0.0.1:5000/api/v1.0/index">欢迎使用基于MVC经典排序算法web演示系统</a>
+
+    </div>
+    <div class="pull-right">
+        <ul class="nav navbar-nav">
+            <a class="navbar-brand " href="http://127.0.0.1:5000/api/v1.0/login">登录</a>
+            <a class="navbar-brand " href="http://127.0.0.1:5000/api/v1.0/register">注册</a>
+            <a class="navbar-brand " href="http://127.0.0.1:5000/api/v1.0/admin">个人管理中心</a>
+        </ul>
+    </div>
+    </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="page-header">
+
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading ">
+        <span class="panel-title ">添加动画</span>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" method="post">
+           {{ form.csrf_token }}
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">{{ form.notsort.label }}</label>
+            <div class="col-sm-4">
+              <!--<input type="text" class="form-control" id="exampleInputName" placeholder="以英文的逗号隔开，eg:1,2,5,3">-->
+              {{ form.notsort(class="form-control",placeholder='以英文的逗号隔开，eg:1,2,5,3,77,8') }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1" class="col-sm-2 control-label">{{ form.speed.label }}</label>
+            <div class="col-sm-4">
+              <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="支持小数">-->
+              {{ form.speed(class="form-control",placeholder="支持小数" ) }}
+            </div>
+          </div>
+            <div>将会生成
+                1，冒泡排序 bubblesort
+
+                2，快速排序 quicksort
+
+                3 ，插入排序 insertsort
+
+                4，希尔排序 shellsort
+
+                5，选择排序 selectsort
+
+                6，归并排序 mergesort</div>
+
+          {{ form.submit(class="btn btn-success pull-right") }}
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading ">
+        <span class="panel-title ">修改密码</span>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" method="post">
+           {{ form.csrf_token }}
+          <div class="form-group">
+            <label for="" class="col-sm-2 control-label">{{ form2.pwd.label }}</label>
+            <div class="col-sm-4">
+              <!--<input type="text" class="form-control" id="exampleInputName" placeholder="以英文的逗号隔开，eg:1,2,5,3">-->
+              {{ form2.pwd(class="form-control",placeholder='填写要修改后的密码') }}
+            </div>
+          </div>
+
+          {{ form2.submit(class="btn btn-success pull-right") }}
+        </form>
+      </div>
+    </div>
+    {% if flag %}
+    <div style="font-size: 20px ;color:red;">{{msg}}</div>
+    <a href="http://127.0.0.1:5000/api/v1.0/login" class="btn btn-success pull-right">登录</a>
+    {% else %}
+    <div>
+      <br/>
+    </div>
+    {% endif %}
+    <br/>
+    <div>
+      {% for x in data %}
+      <div style="font-size:20px">待排序的数字序列：{{x.notsort}} 速度为：{{x.speed}}
+      <a href="http://127.0.0.1:5000/api/v1.0/delete/{{ x.id }}">删除</a></div>
+      {% for i in x.pics %}
+        <div>
+          <a style="font-size:18px" href="http://127.0.0.1:5000/api/v1.0/download/{{ i.id }}">{{i.name}}</a>
+        </div>
+
+      {% endfor %}
+        <br/>
+      {% endfor%}
+    </div>
+  </div>
+
+</div>
+
+<script src="/App/static/js/jquery-3.2.1.min.js"></script>
+<script src="/App/static/js/bootstrap.min.js"></script>
+</body>
+</html>
